@@ -12,8 +12,8 @@ int majorityElement(vector<int>& nums) {
 
   int majorityElement;
 
-  for (const auto& [element, quantity] : elementsCount) {
-    if (quantity > nums.size() / 2) {
+  for (const auto& [element, count] : elementsCount) {
+    if (count > nums.size() / 2) {
       majorityElement = element;
     }
   }  // n
