@@ -4,12 +4,19 @@
 
 using namespace std;
 
-void test();
-int findKthLargest(vector<int>& nums, int k);
+int findKthLargest(vector<int>& nums, int k) {
+  priority_queue<int, vector<int>, greater<int>> kLargestNums;
 
-int main() {
-  test();
-  return 0;
+  for (int i = 0; i < k; i++) {
+    kLargestNums.push(nums[i]);
+  }
+  for (int i = k; i < nums.size(); i++) {
+    if (kLargestNums.top() < nums[i]) {
+      kLargestNums.pop();
+      kLargestNums.push(nums[i]);
+    }
+  }
+  return kLargestNums.top();
 }
 
 void test() {
@@ -26,17 +33,7 @@ void test() {
   cout << "ans: " << findKthLargest(testVector, k) << endl;
 }
 
-int findKthLargest(vector<int>& nums, int k) {
-  priority_queue<int, vector<int>, greater<int>> kLargestNums;
-
-  for (int i = 0; i < k; i++) {
-    kLargestNums.push(nums[i]);
-  }
-  for (int i = k; i < nums.size(); i++) {
-    if (kLargestNums.top() < nums[i]) {
-      kLargestNums.pop();
-      kLargestNums.push(nums[i]);
-    }
-  }
-  return kLargestNums.top();
+int main() {
+  test();
+  return 0;
 }

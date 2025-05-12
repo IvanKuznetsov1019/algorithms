@@ -3,13 +3,21 @@
 
 using namespace std;
 
-void test();
-
-bool isValidParentheses(string& str);
-
-int main() {
-  test();
-  return 0;
+bool isValidParentheses(string& str) {
+  stack<char> openingParenthesis;
+  for (const char item : str) {
+    if ((item == ')' && openingParenthesis.top() == '(') ||
+        (item == ']' && openingParenthesis.top() == '[') ||
+        (item == '}' && openingParenthesis.top() == '{')) {
+      openingParenthesis.pop();
+    } else {
+      openingParenthesis.push(item);
+    }
+  }
+  if (openingParenthesis.empty()) {
+    return true;
+  }
+  return false;
 }
 
 void test() {
@@ -30,33 +38,7 @@ void test() {
        << isValidParentheses(str) << endl;
 }
 
-bool isValidParentheses(string& str) {
-  stack<char> openingParenthesis;
-  for (const char& item : str) {
-    if (item == ')') {
-      if (openingParenthesis.top() == '(') {
-        openingParenthesis.pop();
-      } else {
-        break;
-      }
-    } else if (item == ']') {
-      if (openingParenthesis.top() == '[') {
-        openingParenthesis.pop();
-      } else {
-        break;
-      }
-    } else if (item == '}') {
-      if (openingParenthesis.top() == '{') {
-        openingParenthesis.pop();
-      } else {
-        break;
-      }
-    } else {
-      openingParenthesis.push(item);
-    }
-  }
-  if (openingParenthesis.empty()) {
-    return true;
-  }
-  return false;
+int main() {
+  test();
+  return 0;
 }

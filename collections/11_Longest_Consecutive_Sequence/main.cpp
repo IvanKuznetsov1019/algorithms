@@ -4,12 +4,18 @@
 
 using namespace std;
 
-void test();
-int longestConsecutive(vector<int>& nums);
-
-int main() {
-  test();
-  return 0;
+int longestConsecutive(vector<int>& nums) {
+  int sequanceLength = 1;
+  unordered_set<int> uniqueNums(nums.begin(), nums.end());
+  for (const int n : uniqueNums) {
+    if (uniqueNums.find(n - 1) == uniqueNums.end()) {
+      int item = n;
+      while (uniqueNums.find(++item) != uniqueNums.end()) {
+        sequanceLength++;
+      }
+    }
+  }
+  return sequanceLength;
 }
 
 void test() {
@@ -22,19 +28,7 @@ void test() {
   cout << longestConsecutive(testVector) << endl;
 }
 
-int longestConsecutive(vector<int>& nums) {
-  int sequanceLength = 1;
-  unordered_set<int> uniqueNums;
-  for (const int& n : nums) {
-    uniqueNums.insert(n);
-  }
-  for (const int& n : uniqueNums) {
-    if (uniqueNums.find(n - 1) == uniqueNums.end()) {
-      int item = n;
-      while (uniqueNums.find(++item) != uniqueNums.end()) {
-        sequanceLength++;
-      }
-    }
-  }
-  return sequanceLength;
+int main() {
+  test();
+  return 0;
 }

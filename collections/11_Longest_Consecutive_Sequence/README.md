@@ -1,5 +1,5 @@
 
-## 3 Longest Consecutive Sequence
+## 11 Longest Consecutive Sequence
 
 Напишите функцию `longestConsecutive`, которая принимает неотсортированный массив целых чисел `nums` и возвращает **длину** самой длинной последовательности целых чисел, идущих по порядку.
 
@@ -36,4 +36,3 @@ int longestConsecutive(vector<int>& nums) {
   ...
 }
 ```
----

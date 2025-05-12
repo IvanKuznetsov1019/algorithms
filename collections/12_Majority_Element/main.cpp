@@ -4,13 +4,21 @@
 
 using namespace std;
 
-void test();
-int majorityElement(vector<int>& nums);
+int majorityElement(vector<int>& nums) {
+  map<int, int> elementsCount;
+  for (const int n : nums) {
+    elementsCount[n]++;
+  }  // nlog(n)
 
-int main() {
-  test();
-  return 0;
-}
+  int majorityElement;
+
+  for (const auto& [element, quantity] : elementsCount) {
+    if (quantity > nums.size() / 2) {
+      majorityElement = element;
+    }
+  }  // n
+  return majorityElement;
+}  // n + nlog(n)
 
 void test() {
   vector<int> testVector;
@@ -22,21 +30,7 @@ void test() {
   cout << majorityElement(testVector) << endl;
 }
 
-int majorityElement(vector<int>& nums) {
-  map<int, int> numOfElements;
-  for (const int& n : nums) {
-    numOfElements[n]++;
-  }  // nlog(n)
-
-  int numberOfRepeats = 0;
-  int majorityElement;
-
-  for (const auto& n : numOfElements) {
-    if (numberOfRepeats < n.second) {
-      numberOfRepeats = n.second;
-      majorityElement = n.first;
-    }
-  }  // n
-  return majorityElement;
-
-}  // n + nlog(n)
+int main() {
+  test();
+  return 0;
+}
